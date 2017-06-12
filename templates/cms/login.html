@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>登陆</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="{{ url_for('static',filename='cms/css/login.css') }}" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 100px;
+        padding-bottom: 40px;
+        background-color: #ccc;
+      }
+
+      .form-signin {
+        max-width: 300px;
+        padding: 19px 29px 29px;
+        margin: 0 auto 20px;
+        background-color: #fff;
+        border: 1px solid #e5e5e5;
+        -webkit-border-radius: 5px;
+           -moz-border-radius: 5px;
+                border-radius: 5px;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+                box-shadow: 0 1px 2px rgba(0,0,0,.05);
+      }
+      .container p{
+          text-align: center;
+          color: red;
+          margin-top: 20px;
+      }
+      .form-signin .form-signin-heading,
+      .form-signin .checkbox {
+        margin-bottom: 10px;
+      }
+      .form-signin input[type="text"],
+      .form-signin input[type="password"] {
+        font-size: 16px;
+        height: auto;
+        margin-bottom: 15px;
+        padding: 7px 9px;
+      }
+
+    </style>
+    <link href="{{ url_for('static',filename='cms/css/boot.css') }}" rel="stylesheet">
+
+
+    <!-- Fav and touch icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ url_for('static',filename='cms/picture/1.png') }}">
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <form class="form-signin" action="" method="post">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+        <h2 class="form-signin-heading" style="text-align:center;">欢迎您</h2>
+        <input type="text" name="email" class="input-block-level" placeholder="请输入邮箱地址">
+        <input type="password" name="password" class="input-block-level" placeholder="请输入密码">
+        <label class="checkbox">
+          <input type="checkbox" name="remeber" value="remember-me">记住我
+        </label>
+        <button class="btn btn-large btn-primary btn-block" type="submit">登陆</button>
+        <a href="{{ url_for('account.front_login') }}" class="btn btn-large btn-primary btn-block">跳转前台登陆</a>
+        {% if message %}
+            <p>{{ message }}</p>
+        {% endif %}
+
+      </form>
+
+    </div> <!-- /container -->
+
+  </body>
+</html>

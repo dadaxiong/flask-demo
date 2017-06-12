@@ -1,0 +1,69 @@
+{% extends 'cms/cms_base.html' %}
+{% from 'common/common_macros.html' import static %}
+{% block title %}
+    编辑前台用户
+{% endblock %}
+
+{% block head %}
+    <script src="{{ static('cms/js/black_front_user.js') }}"></script>
+{% endblock %}
+
+{% block page_title %}
+    {{ self.title() }}
+{% endblock %}
+
+{% block main_content %}
+    <div class="box_top">
+    </div>
+    <table class="table table-bordered">
+        <tr>
+            <td>用户名:</td>
+            <td>{{ user.username }}</td>
+            <td>电话:</td>
+            <td>{{ user.phone }}</td>
+        </tr>
+        <tr>
+            <td>加入时间：</td>
+            <td>{{ user.join_time }}</td>
+            <td>使用状态：</td>
+            <td>
+                {% if user.is_active ==true %}
+                    可用
+                {% else %}
+                    禁用
+                {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td>真实姓名：</td>
+            <td>{{ user.realname }}</td>
+            <td>性别：</td>
+            <td>
+                {%if user.gender ==1%}
+                    男
+                {% elif user.gender ==2 %}
+                    女
+                {% else %}
+                    保密
+                {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td>邮箱：</td>
+            <td>{{ user.email }}</td>
+            <td>QQ：</td>
+            <td>{{ user.qq }}</td>
+        </tr>
+        <tr>
+            <td>个性签名:</td>
+            <td>{{ user.signature }}</td>
+            <td>个人积分：</td>
+            <td>{{ user.points }}</td>
+        </tr>
+    </table>
+    {% if user.is_active==true %}
+        <button class="btn btn-danger" data-user-id="{{ user.id }}" data-is-active="1" id="is_black_btn">拉黑用户</button>
+    {% else %}
+        <button class="btn btn-success" data-user-id="{{ user.id }}" data-is-active="0" id="is_black_btn">取消拉黑</button>
+    {% endif %}
+{% endblock %}

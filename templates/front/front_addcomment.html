@@ -1,0 +1,29 @@
+{% extends 'front/front_base.html' %}
+
+{% block title %}
+    评论
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ static('front/css/front_addcomment.css') }}">
+    <script src="{{ static('front/js/front_addcomment.js') }}"></script>
+{% endblock %}
+
+{% block container %}
+    <div class="container-inner">
+        <div class="post-title">
+            <a href="{{ url_for('post.front_detail',post_id=post.id) }}">帖子的标题:{{ post.title }}</a>
+        </div>
+        {% if origin_comment %}
+            <div class="origin_comment_group" data-origin-id="{{ origin_comment.id }}">
+                <p>{{ origin_comment.author.username }}于{{ origin_comment.create_time }}评论:</p>
+                <div class="comment_context">{{ origin_comment.content|safe }}</div>
+            </div>
+        {% endif %}
+        {% include 'common/comon_edit.html' %}
+        <div class="bottom-group">
+            <button class="btn btn-warning"  id="submit-btn" data-post-id="{{ post.id }}">提交评论</button>
+        </div>
+    </div>
+{% endblock %}
+

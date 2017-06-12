@@ -1,0 +1,44 @@
+{% extends 'cms/cms_base.html' %}
+{% block title %}
+    添加cms用户
+{% endblock %}
+
+{% block head %}
+    <style>
+        h2{
+            color: lightskyblue;
+        }
+    </style>
+    <script src="{{ static('cms/js/add_cmsuser.js') }}"></script>
+{% endblock %}
+
+{% block page_title %}
+    <h2>添加cms用户</h2>
+{% endblock %}
+
+{% block main_content %}
+    <form action="" method="post" class="form form-min form">
+        <div class="form-group">
+            <label for="">用户名</label>
+            <input type="text" class="form-control" placeholder="用户名" name="username">
+        </div>
+        <div class="form-group">
+            <label for="">密码</label>
+            <input type="password" class="form-control" placeholder="密码" name="password">
+        </div>
+        <div class="form-group">
+            <label for="">邮箱</label>
+            <input type="text" class="form-control" placeholder="密码" name="email">
+        </div>
+        <div class="checkbox">
+            {% for role in roles %}
+                <label for="">
+                    <input type="checkbox" name="roles" value="{{ role.id }}" />{{ role.name}}
+                </label>
+            {% endfor %}
+        </div>
+        <div class="form form-primary">
+            <button class="btn btn-success" id="submit">立即添加</button>
+        </div>
+    </form>
+{% endblock %}

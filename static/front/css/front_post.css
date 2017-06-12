@@ -1,0 +1,22 @@
+body{
+    background: #C1C1C1;
+}
+form{
+    width: 1000px;
+    margin: 0 auto;
+}
+form textarea{
+    width: 100%;
+    height: 400px;
+}
+.captcha_group{
+    width: 250px;
+    margin-top:10px;
+}
+.captcha_group span{
+    padding: 0;
+}
+.captcha_group span img{
+    width: 80px;
+    height: 30px;
+}

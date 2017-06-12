@@ -1,0 +1,75 @@
+{% from 'common/common_macros.html' import static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>大熊论坛前台页面</title>
+	<link rel="stylesheet" href="{{static('front/css/front_login.css') }}">
+	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+	<link href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	<script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<style>
+		body{
+			background: #ccc
+		}
+        #graph-captcha-btn{
+            padding: 0;
+        }
+        #graph-captcha-btn img{
+            width: 80px;
+            height: 30px;
+            margin: 0;
+            padding: 0;
+        }
+        .error-info{
+            text-align: center;
+            color: red;
+        }
+	</style>
+    <script src="{{ static('comon/xtparam.js') }}"></script>
+    <script src="{{ static('front/js/front_graph_captcha.js') }}"></script>
+</head>
+<a class="cms_login_btn" href="{{ url_for('cms.login') }}"><button class="btn btn-primary ">管理员</button></a>
+<body>
+	<div class="login_box">
+		<img src="{{ static('cms/picture/front_login.jpg') }}" alt="" width="120" height="80">
+		<div class="front_login_title">大熊论坛登录页面</div>
+		<form action="" class="login_form" method="post">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+			<div class="form-group">
+				<input type="text" class="form-control" placeholder="请输入手机号码" name="phone">
+			</div>
+			<div class="form-group">
+				<input type="password" class="form-control" placeholder="请输入密码" name="password">
+			</div>
+			<div class="form-group">
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="请输入图形验证码" name="graph_captcha">
+					<span class="input-group-addon " id="graph-captcha-btn">
+                        <img src="{{ url_for('account.graph_captcha') }}" alt="">
+                    </span>
+				</div>
+			</div>
+			<div class="index" >
+				<div class="checkbox remember-me" id="remember-me">
+					<label for=""><input type="checkbox" name="remember" value=1>记住我</label>
+				</div>
+				<span class="forgot_password">
+					<a href="#">忘记密码?</a>
+				</span>
+			</div>
+			<div class="form-group">
+				<button class="btn btn-info btn-block">立即登录</button>
+			</div>
+            <div class="form-group">
+				<a href="{{ url_for('account.regist') }}" class="btn btn-warning btn-block">前往注册</a>
+			</div>
+            {% if message %}
+                <div class="form-group error-info">
+                    {{ message }}
+                </div>
+            {% endif %}
+		</form>
+	</div>
+</body>
+</html>

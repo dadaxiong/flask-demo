@@ -1,0 +1,62 @@
+{% extends 'cms/cms_base.html' %}
+
+{% block title %}
+    cms用户
+{% endblock %}
+
+{% block head %}
+    <style>
+        h2{
+            color: #0e90d2;
+            font-family: "华文仿宋";
+        }
+    </style>
+    <link rel="stylesheet" href="{{ static('cms/css/cmsuser.css')}}">
+{% endblock %}
+
+{% block page_title %}
+   <h2>CMS用户管理</h2>
+{% endblock %}
+
+{% block main_content %}
+    <div class="box_top">
+        <a href="{{ url_for('cms.add_cmsuser') }}" class="btn btn-info">添加管理员</a>
+    </div>
+    <table class="table table-bordered table-hover table-condensed">
+        <thead>
+            <tr>
+                <td>同户名</td>
+                <td>分组</td>
+                <td>加入时间</td>
+                <td>状态</td>
+                <td>操作</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.username }}</td>
+                    <td>
+                        {% for role in user.roles %}
+                            {{ role.name }}
+                            {% if not loop.last %},{% endif %}
+                        {% endfor %}
+                    </td>
+                    <td>{{ user.datetime }}</td>
+                    <td>
+                        {% if user.is_active%}
+                            <span class="btn btn-xs btn-success">可用</span>
+                        {% else %}
+                            <span class="btn btn-xs btn-danger">拉黑</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if user.id !=cms_user.id %}
+                            <a href="{{url_for('cms.edit_cmsuser',user_id=user.id )}}" class="btn btn-warning btn-xs">操作</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'cms/cms_base.html' %}
+{% from 'common/common_macros.html' import static %}
+{% block title %}
+    前台cms用户管理
+{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block page_title %}
+    {{ self.title()}}
+{% endblock %}
+
+{% block main_content %}
+    <div class="top_box">
+        <label >排序：</label>
+        <select class="sort-select">
+            <option value="1" {% if current_sort=='1'%}selected{% endif %}>按加入时间排序</option>
+            <option value="2" {% if current_sort=='2'%}selected{% endif %}>按帖子量排序</option>
+            <option value="3" {% if current_sort=='3'%}selected{% endif %}>按评论量排序</option>
+        </select>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <td>用户名</td>
+                <td>手机号码</td>
+                <td>加入时间</td>
+                <td>发表帖子数</td>
+                <td>评论数</td>
+                <td>状态</td>
+                <td>操作</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in front_user %}
+                <tr>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.phone }}</td>
+                    <td>{{ user.join_time }}</td>
+                    <td>{{ user.posts|length }}</td>
+                    <td>{{ user.comments|length }}</td>
+                    {% if user.is_active ==true %}
+                        <td>
+                            <button class="btn btn-success btn-xs">可用</button>
+                        </td>
+                    {% else %}
+                        <td>
+                            <button class="btn btn-danger btn-xs">禁用</button>
+                        </td>
+                    {% endif %}
+                    <td>
+                        <a href="{{ url_for('cms.edit_front_user',user_id=user.id) }}" class="btn btn-info btn-xs">操作</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

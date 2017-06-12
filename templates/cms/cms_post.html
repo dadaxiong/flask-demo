@@ -1,0 +1,94 @@
+{% extends 'cms/cms_base.html' %}
+{% block title %}
+    管理帖子页面
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ static('cms/css/cms_post.css') }}">
+    <script src="{{ static('comon/xtparam.js') }}"></script>
+    <script src="{{ static('cms/js/cms_post.js') }}"></script>
+{% endblock %}
+
+{% block page_title %}
+    {{ self.title() }}
+{% endblock %}
+
+{% block main_content %}
+    <form action="" method="post">
+        <div class="form-group top-select">
+            <div class="sort-group select-left">
+                <label>帖子排序：</label>
+                <select class="post-sort-select" id="left-select">
+                    <option value="1" {% if c_sort ==1 %}selected{% endif %}>按时间排序</option>
+                    <option value="2" {% if c_sort ==2 %}selected{% endif %}>按加精排序</option>
+                    <option value="3" {% if c_sort ==3 %}selected{% endif %}>按帖子量排序</option>
+                </select>
+            </div>
+            <div class="board-group select-right">
+                <label >板块过滤</label>
+                <select class="board-filter-select" id="board-filter-select">
+                    <option value="0" {% if c_board ==0 %}selected{% endif %}>所有版块</option>
+                    {% for board in boards %}
+                        <option value="{{ board.id }}" {% if c_board==board.id %}selected{% endif %}>{{ board.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <td>标题</td>
+                    <td>作者</td>
+                    <td>创建时间</td>
+                    <td>所属板块</td>
+                    <td>操作</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for post in posts %}
+                    <tr>
+                        <td>{{ post.title }}</td>
+                        <td>{{ post.author.username }}</td>
+                        <td>{{ post.create_time }}</td>
+                        <td>{{ post.board.name }}</td>
+                        <td>
+                            {% if post.highlights %}
+                                <button class="btn btn-primary btn-xs highlight-btn" data-post-id="{{ post.id }}" data-is-highlight="1">取消加精</button>
+                            {% else %}
+                                <button class="btn btn-danger btn-xs highlight-btn" data-post-id="{{ post.id }}" data-is-highlight="0">加精</button>
+                            {% endif %}
+                            <button class="btn btn-success btn-xs" data-post-id="{{ post.id }}" id="delete-post">删除</button>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% if page_total >= 1 %}
+            <div style="text-align: center;">
+                <nav aria-label="...">
+                    <ul class="pagination">
+                        {% if page <= 1 %}
+                            <li class="disabled"><span>&laquo;</span></li>
+                        {% else %}
+                            <li><a href="{{ url_for('cms.cms_post',page=page-1,sort=c_sort,board=c_board) }}">&laquo;</a></li>
+                        {% endif %}
+
+                        {% for page_tmp in page_list %}
+                            {% if page == page_tmp %}
+                                <li class="active"><span>{{ page_tmp}}</span></li>
+                            {% else %}
+                                <li><a href="{{ url_for('cms.cms_post',page=page_tmp,sort=c_sort,board=c_board) }}">{{ page_tmp }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                        <li><span>总共{{ page_total }}页</span></li>
+                        {% if page >= page_total %}
+                            <li class="disabled"><span>&raquo;</span></li>
+                        {% else %}
+                            <li><a href="{{ url_for('cms.cms_post',page=page+1,sort=c_sort,board=c_board) }}">&raquo;</a></li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            </div>
+        {% endif %}
+    </form>
+{% endblock %}

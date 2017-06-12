@@ -1,0 +1,82 @@
+{% from 'common/common_macros.html' import static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>大熊论坛用户注册页面</title>
+	<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+	<link href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	<script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{{ static('front/css/front_regist.css') }}">
+	<style>
+        .error_message{
+            text-align: center;
+            color:red;
+        }
+        .captcha-btn{
+            padding: 0;
+
+        }
+        .captcha-img{
+            width: 80px;
+            height: 30px;
+            margin:0;
+        }
+    </style>
+    <script src="{{ static('comon/xtparam.js') }}"></script>
+    <script src="{{static('front/js/front_regist.js')}}"></script>
+    <script src="{{ static('comon/xtajax.js') }}"></script>
+    <link rel="stylesheet" href="{{ static('comon/sweetalert/sweetalert.css') }}">
+    <script src="{{ static('comon/sweetalert/sweetalert.min.js') }}"></script>
+    <script src="{{ static('comon/sweetalert/xtalert.js') }}"></script>
+    <script src="{{ static('front/js/front_graph_captcha.js') }}"></script>
+</head>
+<body>
+	<div class="regist_box">
+		<img class="regist_logo" src="{{ static('cms/picture/front_login.jpg') }}" alt="" width="120" height="90">
+		<div class="regist_title">大熊论坛用户注册页面</div>
+		<div class="regist_form">
+			<form action="" class="form-horizontal" method="post">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" class="form-control"  placeholder="请输入手机号" name="phone" value="{{ phone }}" >
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" id="phone_message">发送短信</button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="phone_captcha" placeholder="请输入短信验证码" >
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" name="username" placeholder="请输入用户名" value="{{ username }}">
+                </div>
+                <div class="form-group">
+                    <input type="password" name="password" class="form-control"  placeholder="请输入密码" value="{{ password }}" >
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control"  name="password_repeat" placeholder="请再次输入密码" value="{{ password_repeat }}">
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" class="form-control "  placeholder="请输入图形验证码" name="graph_captcha">
+                        <span class="input-group-addon captcha-btn" id="graph-captcha-btn">
+                            <img src="{{ url_for('account.graph_captcha') }}" alt="" class="captcha-img">
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-success btn-block regist-submit">立即提交</button>
+                    <a class="btn btn-block btn-info" href="{{ url_for('account.front_login') }}">登陆</a>
+                </div>
+		    </form>
+            {% if message %}
+                <div class="error_message">
+                    {{ message }}
+                </div>
+            {% endif %}
+		</div>
+    </div>
+</body>
+</html>

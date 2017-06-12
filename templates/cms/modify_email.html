@@ -1,0 +1,31 @@
+{% extends 'cms/cms_base.html' %}
+{% block title %}
+    修改邮箱
+{% endblock %}
+{% block head %}
+    <style>
+        h1{
+            color: lightseagreen;
+        }
+    </style>
+    <script src="{{ static('cms/js/modify_email.js') }}"></script>
+{% endblock %}
+{% block page_title %}
+    <h1>修改邮箱</h1>
+{% endblock %}
+{% block main_content %}
+    <form action="" method="post" class="form-min">
+        <div class="form-group">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="邮箱号" name="email">
+                <span class="input-group-addon" style="cursor: pointer;">获取验证码</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="邮箱验证码" name="captcha">
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary" id="submit">立即修改</button>
+        </div>
+    </form>
+{% endblock %}

@@ -1,0 +1,62 @@
+.post-list-container{
+    background: powderblue;
+}
+.post-list li{
+    padding-top: 16px;
+}
+
+.post-list li .post-list-img{
+    width: 50px;
+    float: left;
+}
+
+.post-list-img img{
+    width: 50px;
+    height:50px;
+    border-radius: 50%;
+    display: block;
+}
+
+.post-list li .post-list-con{
+    margin-left: 60px;
+}
+
+.post-list-con .title{
+    margin-top: 10px;
+}
+
+.post-list-con .title .title_name{
+    max-width: 524px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #333;
+    font-size: 16px;
+}
+
+.title .title_name:hover{
+    color: #ff6f3d;
+}
+
+.post-list-con .auth-msg{
+    line-height: 18px;
+    margin: 6px 0 0;
+    padding-bottom: 11px;
+    border-bottom: 1px solid #e6e6e6;
+    color: #8c8c8c;
+    font-size: 12px;
+}
+
+.auth-msg .user_name{
+    color: #8c8c8c;
+}
+.top-select{
+    padding:10px 10px;
+    background: #ecedf0;
+    overflow: hidden;
+}
+.top-select .select-left{
+    float: left;
+}
+.top-select .select-right{
+    float:right;
+}

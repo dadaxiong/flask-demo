@@ -1,0 +1,8 @@
+.box_top{
+    padding: 10px 10px;
+    background: #ecedf0;
+    overflow: hidden;
+}
+.box_top a{
+    float: right;
+}

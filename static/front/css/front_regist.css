@@ -1,0 +1,37 @@
+body{
+	background: #ccc;
+}
+.regist_box{
+	background: #fff;
+	width: 500px;
+	height: 580px;
+	padding-top: 20px;
+	margin:50px auto;
+}
+.regist_box .regist_logo{
+	margin-left: 190px;
+	margin-bottom: 10px;
+}
+.regist_box .regist_title{
+	text-align:center;
+	font-size: 28px;
+}
+.regist_box .regist_form{
+	width: 300px;
+	margin: 16px auto;
+}
+.regist_box .regist_form span{
+	color: #6F6A6B;
+	line-height: 30px;
+}
+.addon-captcha{
+	padding: 0;
+}
+.addin-captcha .addon-img{
+	width: 80px;
+	height:30px;
+	background: red;
+}
+.regist-submit{
+	margin-bottom: 10px;
+}

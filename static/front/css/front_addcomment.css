@@ -1,0 +1,31 @@
+.container{
+    width: 990px;
+    background: #fff;
+    margin: 10px auto;
+    border: 1px solid #e6e6e6;
+}
+.container-inner{
+    background: #fff;
+    padding: 30px;
+    position: relative;
+}
+.post-title{
+    padding: 20px 0;
+}
+.origin-comment-group{
+    padding-bottom: 20px;
+}
+.comment_context{
+    margin: 10px 0;
+    padding: 20px;
+    border: 1px solid #f3f3f3;
+    line-height: 20px;
+    background: #C1C1C1;
+    font-size: 14px;
+}
+#editor{
+    height: 300px;
+}
+.bottom-group{
+    margin-top: 10px;
+}

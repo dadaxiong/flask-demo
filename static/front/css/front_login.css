@@ -1,0 +1,45 @@
+.cms_login_btn{
+	float:right;
+	margin-top:-50px;
+	margin-right:10px;
+}
+.login_box{
+	background: #fff;
+	width: 480px;
+	height: 500px;
+	padding-top:20px;
+	margin: 60px auto;
+}
+.login_box img{
+	margin-left: 190px;
+}
+.login_box .front_login_title{
+	font-size: 28px;
+	font-style: "微软雅黑";
+	margin: 20px auto;
+	text-align: center;
+}
+.login_form{
+	width: 300px;
+	margin: 0 auto;
+}
+.login_form span{
+	cursor: pointer;
+}
+.login_form .index{
+	display: inline-block;
+	width: 300px;
+}
+.login_form .index .forgot_password{
+	float:right;
+}
+.login_form .index div {
+	float:left;
+	display: inline-block;
+}
+.login_form .index span{
+	float:right;
+	margin-top: 10px;
+}
+
+

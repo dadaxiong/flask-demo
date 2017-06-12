@@ -1,0 +1,44 @@
+{% extends 'cms/cms_base.html' %}
+{% from 'common/common_macros.html' import static %}
+{% block title %}
+    模块管理
+{% endblock %}
+
+{% block head %}
+    <script src="{{ static('cms/js/cms_board.js') }}"></script>
+{% endblock %}
+
+{% block page_title %}
+    {{ self.title() }}
+{% endblock %}
+
+{% block main_content %}
+    <div class="form-group box_top">
+        <a class="btn btn-info" id = "add-board-btn" data-board-author="{{ cms_user.username }}">添加新版块</a>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <td>模块名称</td>
+                <td>创建者</td>
+                <td>创建时间</td>
+                <td>帖子数量</td>
+                <td>操作</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for board in boards %}
+                <tr>
+                    <td>{{ board.name }}</td>
+                    <td>{{ board.author.username}}</td>
+                    <td>{{ board.create_time }}</td>
+                    <td>暂未实现</td>
+                    <td>
+                        <a class="btn btn-success btn-xs edit-board-btn" data-board-id="{{ board.id }}">编辑</a>
+                        <a class="btn btn-warning btn-xs delete-board-btn" data-board-id="{{ board.id }}">删除</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

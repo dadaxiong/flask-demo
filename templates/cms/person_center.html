@@ -1,0 +1,55 @@
+{% extends 'cms/cms_base.html' %}
+{% block title %}
+    个人中心
+{% endblock %}
+{% block head %}
+    <style>
+        h1{
+            color: lightseagreen;
+        }
+        .table{
+            width:600px;
+        }
+    </style>
+{% endblock %}
+{% block page_title %}
+    <h1>个人中心</h1>
+{% endblock %}
+{% block main_content %}
+    <div class="table">
+        <table class="table table-bordered">
+        <tbody>
+            <tr class="info">
+                <td class="col-lg-4">用户名</td>
+                <td >{{ cms_user.username }}</td>
+            </tr>
+            <tr class="danger">
+                <td>邮箱</td>
+                <td>{{ cms_user.email }}</td>
+            </tr>
+            <tr class="success">
+                <td>角色</td>
+                <td>
+                    {% for role in cms_user.roles %}
+                        {{ role.name }}
+                        {% if not loop.last %},{% endif %}
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr class="active">
+                <td>权限</td>
+                <td>
+                    {% for permission in cms_user.permissions %}
+                        {{ permission.values()[0][1] }}
+                        {% if not loop.last %},{% endif %}
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr class="warning">
+                <td>用户加入时间</td>
+                <td>{{ cms_user.datetime }}</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+{% endblock %}
